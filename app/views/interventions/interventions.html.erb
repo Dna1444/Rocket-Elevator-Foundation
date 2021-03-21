@@ -10,7 +10,9 @@
             <%= select_tag "Column", options_from_collection_for_select(Column.all, "id", "id"), prompt: "Column", class: "form-control" %>
             <%= select_tag "Elevator", options_from_collection_for_select(Elevator.all, "id", "id"), prompt: "Elevator", class: "form-control" %>
             <%= select_tag "Employee", options_from_collection_for_select(Employee.all, "id", "info"), prompt: "Employee", class: "form-control" %>
+            <label>Report</label>
             <textarea cols="30" id="Report" name="Report" rows="10"></textarea>
+            
             <%= submit_tag("Submit", class: "btn btn-primary") %>
         <% end %>
   </div>
