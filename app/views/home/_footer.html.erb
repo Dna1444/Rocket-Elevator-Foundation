@@ -31,17 +31,6 @@
 			</footer>
 			<!-- /FOOTER -->
 
-		</div>
-		<!-- /wrapper -->
-
-
-		<!-- SCROLL TO TOP -->
-		<a href="#" id="toTop"></a>
-		
-
-		</script>
-
-
 		<!-- JAVASCRIPT FILES -->
 		<script>var plugin_path = 'assets/plugins/';</script>
 		<script src="assets/plugins/jquery/jquery-3.3.1.min.js"></script>
@@ -66,37 +55,4 @@
     	<script defer
     	src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["GOOGLE_MAPS_API"]%>&callback=initMap">
 		</script>
-		<script> 
-
-				// Initialize and add the map
-				function initMap() {
-					// The location of Codeboxx
-					const Codeboxx = { lat: 45.45948962246047, lng: -73.5671347140045 };
-					// The map, centered at Codeboxx
-					const map = new google.maps.Map(document.getElementById("map2"), {
-						zoom: 15,
-						center: Codeboxx
-					});
-					const contentString =
-					'<div id="content"></div>' +
-					'<p><b>CodeBoxx</b><br>' +
-					"4468 Wellington St Suite 204," +
-					"Verdun, Québec H4G 1W5 <br>"+
-					'<a href="https://goo.gl/maps/txZECbXwKYjrSpAs5" target="_blank">View on Google Maps</a></p></div>' ;
-					
-					const infowindow = new google.maps.InfoWindow({
-						content: contentString,
-						
-					});
-					const marker = new google.maps.Marker({
-						position: Codeboxx,
-						map: map,
-						title: "Codeboxx"
-					});
-					infowindow.open(map, marker);
-					marker.addListener("click", () => {
-						infowindow.open(map, marker);
-					});
-				}
-
-		</script>
+		

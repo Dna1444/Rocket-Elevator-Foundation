@@ -8,10 +8,17 @@ Rails.application.routes.draw do
   get 'quotes/quotes'
   get 'pages/charts'
   get 'pages/diagram'
+  get 'page/interventions'
+  get 'get_building_by_customer/:customer_id', to: 'interventions#get_building_by_customer' 
+  get 'get_batterie_by_building/:building_id', to: 'interventions#get_batterie_by_building' 
+  get 'get_column_by_batterie/:batterie_id', to: 'interventions#get_column_by_batterie' 
+  get 'get_elevator_by_column/:column_id', to: 'interventions#get_elevator_by_column' 
+  post '/create' => 'interventions#create'
   devise_for :users
   
   root to: "home#index"
   
+  get '/interventions'=> 'pages#interventions'
   get '/commercial'   => 'pages#commercial'
   get "/home"         => 'home#index'
   get '/404'          => 'pages#404'
@@ -27,6 +34,9 @@ Rails.application.routes.draw do
   #get '/maps'       => 'maps#dashboard'
   post '/leads'       => 'leads#create'
   post '/quotes'      => 'quotes#create'
+  authenticate :user, ->(user) {user.admin?} do
+    get '/fuckit' => 'interventions#interventions'
+  end
 
   get 'buildinglocalisation' => 'buildinglocalisation#building'
   get '/speak'       => 'speak#speech'

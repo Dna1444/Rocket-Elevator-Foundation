@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_17_141425) do
+ActiveRecord::Schema.define(version: 2021_03_19_001905) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "type_address"
@@ -131,18 +131,27 @@ ActiveRecord::Schema.define(version: 2021_03_17_141425) do
   end
 
   create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "employee_id"
-    t.integer "building_id"
-    t.integer "battery_id"
-    t.integer "column_id"
-    t.integer "elevator_id"
-    t.string "start_interv"
-    t.string "stop_interv"
-    t.string "result"
-    t.string "reports"
-    t.string "status"
+    t.bigint "author", null: false
+    t.bigint "customers_id", null: false
+    t.bigint "building_id", null: false
+    t.bigint "batteries_id", null: false
+    t.bigint "columns_id"
+    t.bigint "elevators_id"
+    t.bigint "employees_id"
+    t.date "Start_of_the_intervention"
+    t.date "End_of_the_intervention"
+    t.text "Result"
+    t.text "Report"
+    t.string "Status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["author"], name: "index_interventions_on_author"
+    t.index ["batteries_id"], name: "index_interventions_on_batteries_id"
+    t.index ["building_id"], name: "index_interventions_on_building_id"
+    t.index ["columns_id"], name: "index_interventions_on_columns_id"
+    t.index ["customers_id"], name: "index_interventions_on_customers_id"
+    t.index ["elevators_id"], name: "index_interventions_on_elevators_id"
+    t.index ["employees_id"], name: "index_interventions_on_employees_id"
   end
 
   create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -158,8 +167,10 @@ ActiveRecord::Schema.define(version: 2021_03_17_141425) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "filename"
+    t.bigint "customers_id"
     t.bigint "customer_id"
     t.index ["customer_id"], name: "index_leads_on_customer_id"
+    t.index ["customers_id"], name: "index_leads_on_customers_id"
   end
 
   create_table "quotes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -212,5 +223,13 @@ ActiveRecord::Schema.define(version: 2021_03_17_141425) do
   add_foreign_key "customers", "users"
   add_foreign_key "elevators", "columns"
   add_foreign_key "employees", "users"
+  add_foreign_key "interventions", "batteries", column: "batteries_id"
+  add_foreign_key "interventions", "buildings"
+  add_foreign_key "interventions", "columns", column: "columns_id"
+  add_foreign_key "interventions", "customers", column: "customers_id"
+  add_foreign_key "interventions", "elevators", column: "elevators_id"
+  add_foreign_key "interventions", "employees", column: "author"
+  add_foreign_key "interventions", "employees", column: "employees_id"
   add_foreign_key "leads", "customers"
+  add_foreign_key "leads", "customers", column: "customers_id"
 end

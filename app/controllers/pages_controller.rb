@@ -9,5 +9,7 @@ class PagesController < ApplicationController
     end
     def diagram
     end
+    def interventions
+    end
 end
 

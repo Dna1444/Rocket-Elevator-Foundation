@@ -5,6 +5,10 @@ class Customer < ApplicationRecord
 
     has_one :lead
 
+    def info
+      "ID:#{id} #{cpy_contact_full_name}"
+    end
+
     #  after_create :dropbox
     #  after_update :dropbox
 

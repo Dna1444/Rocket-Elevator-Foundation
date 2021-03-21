@@ -1,0 +1,8 @@
+<%= select_tag "Author", options_from_collection_for_select(Employee.all, "id", "first_name", "last_name") %>
+<%= select_tag "Customer", options_from_collection_for_select(Customer.all, "id", "company_name") %>
+<%= select_tag "Buildings", options_from_collection_for_select(Building.all, "id", "adm_contact_full_name") %>
+<%= form_tag(course_search_path, method: "get", class: "form-inline", remote: true) do %>
+
+<div class="row" id="course_listing">
+  <%= render partial: "course_list", locals: {courses: @courses} %>
+</div>
