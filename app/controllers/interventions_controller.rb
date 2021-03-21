@@ -43,21 +43,24 @@ class InterventionsController < ApplicationController
         puts "create getting called"
         employee = Employee.find_by(user_id: current_user.id)
         puts employee.id
-        @interventions = Interventions.new({
-            author: employee.id,
-            customers_id: params[:Customer],
-            building_id: params[:Building],
-            batteries_id: params[:Battery],
-            columns_id: params[:Column],
-            employees_id: params[:Employee],
-            Start_of_the_intervention: nil,
-            End_of_the_intervention: nil,
-            Result: "Incomplete",
-            Report: params[:report],
-            Status: "Pending"
-        })
+        @interventions = Interventions.new()
+        @interventions.author = employee.id
+        @interventions.customers_id = params[:Customer]
+        @interventions.building_id = params[:Building]
+        @interventions.batteries_id = params[:Battery] unless params[:Column] != nil
+        @interventions.columns_id = params[:Column] unless params[:Elevator] != nil
+        @interventions.elevators_id = params[:Elevator]
+        @interventions.employees_id = params[:Employee]
+        @interventions.Start_of_the_intervention = nil
+        @interventions.End_of_the_intervention = nil
+        @interventions.Result = "Incomplete"
+        @interventions.Report = params[:Report]
+        @interventions.Status = "Pending"
+        
 
-        @interventions.save!
+        if @interventions.save!
+            redirect_back fallback_location: root_path, notice: "Success"
+        end
         
         
         

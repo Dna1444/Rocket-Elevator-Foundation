@@ -129,42 +129,43 @@ $(function() {
             });
         }
     });
-
+    if ($("select#Column").val() == "") {
+        $("select#Elevator option").remove();
+        var row = "<option value=\"" + "" + "\">" + "Elevator" + "</option>";
+        $(row).appendTo("select#Elevator");
+    }
     $("select#Column").change(function() {
-        console.log("Column is changing")
         var id_value_string = $(this).val();
         if (id_value_string == "") {
             $("select#Elevator option").remove();
+            $("select#Elevator").val("");
+            $("select#Elevator").hide();
             var row = "<option value=\"" + "" + "\">" + "Elevator" + "</option>";
             $(row).appendTo("select#Elevator");
         } else {
-      // Send the request and update course dropdown
-            console.log("before ajax "+ id_value_string)
-
-            $.ajax({
-                dataType: "json",
-                method: 'GET',
-                cache: false,
-                url: '/get_elevator_by_column/' + id_value_string,
-                timeout: 5000,
-                error: function(XMLHttpRequest, errorTextStatus, error) {
-                    alert("Failed to submit : " + errorTextStatus + " ;" + error);
-                },
-                success: function(data) {
-                    // Clear all options from course select
-                    $("select#Elevator option").remove();
-                    //put in a empty default line
-                    var row = "<option value=\"" + "" + "\">" + "Elevator" + "</option>";
-                    $(row).appendTo("select#Elavator");
-                    // Fill course select
-                    $.each(data, function(i, j) {
-                    row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
-                    console.log(row)
-                    $(row).appendTo("select#Elevator");
-                    $("select#Elevator").show();
-                    });
-                }
+        // Send the request and update course dropdown
+        $.ajax({
+            dataType: "json",
+            cache: false,
+            url: '/get_elevator_by_column/' + id_value_string,
+            timeout: 5000,
+            error: function(XMLHttpRequest, errorTextStatus, error) {
+                alert("Failed to submit : " + errorTextStatus + " ;" + error);
+        },
+        success: function(data) {
+            // Clear all options from course select
+            $("select#Elevator option").remove();
+            //put in a empty default line
+            var row = "<option value=\"" + "" + "\">" + "Elevator" + "</option>";
+            $(row).appendTo("select#Elevator");
+            // Fill course select
+            $.each(data, function(i, j) {
+                row = "<option value=\"" + j.id + "\">" + j.id + "</option>";
+                $(row).appendTo("select#Elevator");
+                $("select#Elevator").show();
             });
+        }
+        });
         }
     });
  

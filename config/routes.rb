@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   
   root to: "home#index"
   
-  get '/interventions'=> 'pages#interventions'
   get '/commercial'   => 'pages#commercial'
   get "/home"         => 'home#index'
   get '/404'          => 'pages#404'
@@ -35,7 +34,7 @@ Rails.application.routes.draw do
   post '/leads'       => 'leads#create'
   post '/quotes'      => 'quotes#create'
   authenticate :user, ->(user) {user.admin?} do
-    get '/fuckit' => 'interventions#interventions'
+    get '/intervention' => 'interventions#interventions'
   end
 
   get 'buildinglocalisation' => 'buildinglocalisation#building'

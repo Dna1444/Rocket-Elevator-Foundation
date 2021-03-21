@@ -4,7 +4,7 @@ class Interventions < ActiveRecord::Migration[5.2]
       t.references :author, null: false, foreign_key: { to_table: :employees }
       t.references :customers, null: false, foreign_key: true
       t.references :building, null: false, foreign_key: true
-      t.references :batteries, null: false, foreign_key: true
+      t.references :batteries, foreign_key: true
       t.references :columns, foreign_key: true
       t.references :elevators, foreign_key: true
       t.references :employees, foreign_key: true
