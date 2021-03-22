@@ -51,8 +51,6 @@ class InterventionsController < ApplicationController
         @interventions.columns_id = params[:Column] unless params[:Elevator] != nil
         @interventions.elevators_id = params[:Elevator]
         @interventions.employees_id = params[:Employee]
-        @interventions.Start_of_the_intervention = nil
-        @interventions.End_of_the_intervention = nil
         @interventions.Result = "Incomplete"
         @interventions.Report = params[:Report]
         @interventions.Status = "Pending"
@@ -61,6 +59,22 @@ class InterventionsController < ApplicationController
         if @interventions.save!
             redirect_back fallback_location: root_path, notice: "Success"
         end
+        client = ZendeskAPI::Client.new do |config|
+            config.url = ENV["ZENDESK_URL"]
+            config.username = ENV["ZENDESK_EMAIL"]
+            config.token = ENV["ZENDESK_TOKEN"]
+        end
+
+        ZendeskAPI::Ticket.create!(client,
+        :subject => "Intervention from #{employee.first_name}",
+        :comment => {
+            :value => "A intervention was requested by #{@interventions.customer_id.company_name} from the building #{@interventions.building_id} for the following Battery: #{@interventions.batterie_id}, Column: #{@interventions.column_id}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
+            The follow is a discription of the report: 
+            #{@interventions.Report}"
+        },
+        :priority => "normal",
+        :type => "problem"
+        )
         
         
         
