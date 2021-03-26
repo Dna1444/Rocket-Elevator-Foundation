@@ -28,4 +28,3 @@ class SpeakController < ApplicationController
 end
 
 
-#{Elevator.where.not(status: "online").count}
