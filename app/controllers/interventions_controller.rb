@@ -1,4 +1,5 @@
 class InterventionsController < ApplicationController
+    require 'zendesk_api'
 
     #getting my building from the customer id
     def get_building_by_customer
@@ -57,7 +58,7 @@ class InterventionsController < ApplicationController
         
 
         if @interventions.save!
-            redirect_back fallback_location: root_path, notice: "Success"
+            redirect_to main_app.root_path, notice: "Intervention send!"
         end
         client = ZendeskAPI::Client.new do |config|
             config.url = ENV["ZENDESK_URL"]
@@ -65,12 +66,17 @@ class InterventionsController < ApplicationController
             config.token = ENV["ZENDESK_TOKEN"]
         end
 
+        @customer = Customer.find_by(id: @interventions.customers_id)
         ZendeskAPI::Ticket.create!(client,
         :subject => "Intervention from #{employee.first_name}",
         :comment => {
-            :value => "A intervention was requested by #{@interventions.customer_id.company_name} from the building #{@interventions.building_id} for the following Battery: #{@interventions.batterie_id}, Column: #{@interventions.column_id}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
+            :value => "A intervention was requested by #{@customer.company_name} from the building #{@interventions.building_id} for the following Battery: #{@interventions.batteries_id}, Column: #{@interventions.columns_id}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
             The follow is a discription of the report: 
             #{@interventions.Report}"
+        },
+        :requester => { 
+            "name": employee.first_name, 
+            "email": employee.email 
         },
         :priority => "normal",
         :type => "problem"
