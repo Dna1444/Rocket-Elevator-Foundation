@@ -3,7 +3,7 @@
 </br>
 <div class="row no-gutters wow slideInUp" data-wow-duration="1s">
   <div class="container col-md-4">
-        <%= form_tag(create_path, method: "POST", class: "form", remote: true) do %>
+        <%= form_tag(create_path, method: "POST", class: "form", remote: false) do %>
             <%= select_tag "Customer", options_from_collection_for_select(Customer.all, "id", "info"), prompt: "Customer", class: "form-control", required: true %>
             <%= select_tag "Building", options_from_collection_for_select(Building.all, "id", "adm_contact_full_name"), prompt: "Building", class: "form-control", required: true %>
             <%= select_tag "Battery", options_from_collection_for_select(Battery.all, "id", "id"), prompt: "Battery", class: "form-control", required: true %>
