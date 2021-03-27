@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   authenticate :user, ->(user) {user.admin?} do
     get '/intervention' => 'interventions#interventions'
   end
+  get "/(*url)", to: redirect('/404')
 
   get 'buildinglocalisation' => 'buildinglocalisation#building'
   get '/speak'       => 'speak#speech'

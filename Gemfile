@@ -47,6 +47,7 @@ gem "twilio-ruby"
 # twilio
 gem 'dropbox_api'
 
+gem 'rspec', '~> 3.0'
 
 
 
