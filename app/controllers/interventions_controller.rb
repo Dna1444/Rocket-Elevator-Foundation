@@ -58,8 +58,10 @@ class InterventionsController < ApplicationController
         
 
         if @interventions.save!
-            redirect_to main_app.root_path, notice: "Intervention send!"
+            redirect_back fallback_location: root_path, notice: "Intervention Created"
         end
+
+        
         client = ZendeskAPI::Client.new do |config|
             config.url = ENV["ZENDESK_URL"]
             config.username = ENV["ZENDESK_EMAIL"]
