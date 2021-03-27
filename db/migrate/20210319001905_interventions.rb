@@ -8,8 +8,8 @@ class Interventions < ActiveRecord::Migration[5.2]
       t.references :columns, foreign_key: true
       t.references :elevators, foreign_key: true
       t.references :employees, foreign_key: true
-      t.date :Start_of_the_intervention
-      t.date :End_of_the_intervention
+      t.timestamps :Start_of_the_intervention
+      t.timestamps :End_of_the_intervention
       t.text :Result
       t.text :Report
       t.string :Status

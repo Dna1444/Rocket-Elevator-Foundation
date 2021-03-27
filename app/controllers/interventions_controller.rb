@@ -70,12 +70,12 @@ class InterventionsController < ApplicationController
         ZendeskAPI::Ticket.create!(client,
         :subject => "Intervention from #{employee.first_name}",
         :comment => {
-            :value => "A intervention was requested by #{@customer.company_name} from the building #{@interventions.building_id} for the following Battery: #{@interventions.batteries_id}, Column: #{@interventions.columns_id}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
+            :value => "A intervention was requested by #{@customer.company_name} from the building #{@interventions.building_id} for the following Battery: #{params[:Battery]}, Column: #{params[:Column]}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
             The follow is a discription of the report: 
             #{@interventions.Report}"
         },
         :requester => { 
-            "name": employee.first_name, 
+            "name": employee.info, 
             "email": employee.email 
         },
         :priority => "normal",
