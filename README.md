@@ -1,7 +1,7 @@
 # Rocket Elevators Information System <img src="app/assets/images/favicon.png" align="right" alt="Rocket Elevators logo by Maxime Auger" width="100" height="">
 
-# Week 7
-#  Life is a Web Service
+# Week 9
+
 If more informations is needed on database and basic operation of our Web App please refer to Week 4 and Week 5's Readme at https://github.com/officialmxm/Rocket_Elevators_Information_System
 
 
@@ -101,9 +101,8 @@ Also we will show you the following updates
 - Gems added
 - API's
 - Routes
-- URL for our site https://claudestlaurent.xyz
-- week 7 video link https://youtu.be/9A7IXR1kIfo
-- Team
+- URL for our site https://dduquette.xyz
+- 
 
 
 
@@ -155,8 +154,17 @@ read me created by jean-francois taillefer
 With our google account we log int the console.cloud.google where we ll set a google API key and enables service that we will need , copy the key and save it.
 
 
+my REST API collection of end points:  https://www.getpostman.com/collections/d994f00ccdfc98b9224d
 
-read me created by jean-francois taillefer
+my rest api git hub: https://github.com/Dna1444/Rest_Api
+
+my graphQL git hub: https://github.com/Dna1444/GraphQl_Api
+
+
+
+
+
+read me created by Dana Duquette
 
 
 
