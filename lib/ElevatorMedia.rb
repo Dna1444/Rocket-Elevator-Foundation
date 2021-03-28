@@ -18,7 +18,7 @@ module ElevatorMedia
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
             request = Net::HTTP::Post.new(url)
-            request["x-rapidapi-key"] = '0833fad74bmshb8cbefad3a08594p14413ajsn9ad9a0051c11'
+            request["x-rapidapi-key"] = ENV['AztroApi']
             request["x-rapidapi-host"] = 'sameer-kumar-aztro-v1.p.rapidapi.com'
 
             response = http.request(request)
