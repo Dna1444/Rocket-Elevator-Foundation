@@ -4,12 +4,11 @@ module ElevatorMedia
     require 'net/http'
     require 'openssl'
     require 'json'
+    require 'rails_helper'
 
     class Streamer
         def self.getContent(input)
-            require 'uri'
-            require 'net/http'
-            require 'openssl'
+            
 
             url = URI("https://sameer-kumar-aztro-v1.p.rapidapi.com/?sign=#{input}&day=today")
 
@@ -18,12 +17,17 @@ module ElevatorMedia
             http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
             request = Net::HTTP::Post.new(url)
-            request["x-rapidapi-key"] = ENV['AztroApi']
+            request["x-rapidapi-key"] = ENV['aztroApi']
             request["x-rapidapi-host"] = 'sameer-kumar-aztro-v1.p.rapidapi.com'
 
+
             response = http.request(request)
-            puts response.read_body
-            response.read_body
+            puts JSON.parse(response.read_body)['description']
+            # response.read_body
+            description = JSON.parse(response.read_body)['description']
+
+            "<div class = 'text-center'><h3>your aztro</h3><p id = 'aztro'>#{description}</p></div>"
+            
         end
         
     end
