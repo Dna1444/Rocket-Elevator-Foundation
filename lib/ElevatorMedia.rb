@@ -23,10 +23,11 @@ module ElevatorMedia
 
             response = http.request(request)
             puts JSON.parse(response.read_body)['description']
+            pp response
             # response.read_body
             description = JSON.parse(response.read_body)['description']
 
-            puts "<div class = 'text-center'><h3>your aztro</h3><p id = 'aztro'>#{description}</p></div>"
+            
             "<div class = 'text-center'><h3>your aztro</h3><p id = 'aztro'>#{description}</p></div>"
             
         end

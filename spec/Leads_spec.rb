@@ -14,8 +14,8 @@ describe "Testing Leads", type: :controller do
 
 
     context "test to see if leads a is a leads form" do
-        it "check to see if it in the form leads" do
-            expect(lead).to be_a(Lead)
+        it "check to see if is valide" do
+            expect(lead).to be_valid
         end
     end
 
