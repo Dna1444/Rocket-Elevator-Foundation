@@ -5,7 +5,7 @@ class SmartContracts < ActiveRecord::Migration[5.2]
       t.string :projectOffice
       t.string :materialProvider
       t.string :solutionManufacturin
-      t.string :cqualitySecurityHomologation
+      t.string :qualitySecurityHomologation
       t.integer :block_number
       t.timestamps
     end
