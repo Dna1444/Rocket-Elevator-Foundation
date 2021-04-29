@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_14_182926) do
+ActiveRecord::Schema.define(version: 2021_04_15_132248) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "type_address"
@@ -194,6 +194,17 @@ ActiveRecord::Schema.define(version: 2021_04_14_182926) do
     t.string "building_type"
     t.string "final_price"
     t.timestamp "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "smart_contracts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "transactionHash"
+    t.string "projectOfficeAddress"
+    t.string "materialProviderAddress"
+    t.string "solutionManufacturingAddress"
+    t.string "qualitySecurityHomologationAddress"
+    t.integer "blockNumber"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
