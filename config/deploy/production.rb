@@ -27,7 +27,7 @@ set :branch, 'main'
 
 role :app, %w{ubuntu@3.96.150.4}
 role :web, %w{ubuntu@3.96.150.4}
-role :db,  %w{ubuntu@3.3.96.150.4}
+role :db,  %w{ubuntu@3.96.150.4}
 
 
 
