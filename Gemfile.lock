@@ -448,6 +448,7 @@ DEPENDENCIES
   dropbox-api
   dropbox_api
   faker
+  faraday (~> 1.4.1)
   figaro
   gmaps4rails
   groupdate
