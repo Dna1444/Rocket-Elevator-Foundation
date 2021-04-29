@@ -26,7 +26,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'hirb'
 gem 'cancancan'
-gem 'pg'
+# gem 'pg'
 gem 'multiverse'
 gem 'rails_admin_import', '~> 2.2'
 
