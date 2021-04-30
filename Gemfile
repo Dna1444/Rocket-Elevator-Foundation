@@ -40,7 +40,7 @@ gem 'sendgrid-ruby'
 gem 'ibm_watson'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
-gem "zendesk_api"
+# gem "zendesk_api"
 gem "dropbox-api"
 gem 'gmaps4rails'
 
