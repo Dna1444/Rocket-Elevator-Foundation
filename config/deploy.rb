@@ -5,6 +5,9 @@ before 'deploy', 'rvm1:install:ruby'
 set :rvm_map_bins, [ 'rake', 'gem', 'bundle', 'ruby', 'puma', 'pumactl' ]
 set :application, "Dana_Duquette"
 set :repo_url, "https://github.com/Dna1444/Rocket-Elevator-Foundation"
+
+set :keep_releases, 3
+
 # set :linked_files, %w{config/application.yml}
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
