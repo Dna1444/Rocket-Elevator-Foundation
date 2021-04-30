@@ -54,7 +54,7 @@ class LeadsController < ApplicationController
     #     :priority => "normal",
     #     :type => "question"
     #     )
-    # end
+    end
 
     def sendMail
         puts("sendmail")
