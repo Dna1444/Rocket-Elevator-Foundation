@@ -1,5 +1,5 @@
 class InterventionsController < ApplicationController
-    require 'zendesk_api'
+    # require 'zendesk_api'
 
     #getting my building from the customer id
     def get_building_by_customer
@@ -62,27 +62,27 @@ class InterventionsController < ApplicationController
         end
 
         
-        client = ZendeskAPI::Client.new do |config|
-            config.url = ENV["ZENDESK_URL"]
-            config.username = ENV["ZENDESK_EMAIL"]
-            config.token = ENV["ZENDESK_TOKEN"]
-        end
+        # client = ZendeskAPI::Client.new do |config|
+        #     config.url = ENV["ZENDESK_URL"]
+        #     config.username = ENV["ZENDESK_EMAIL"]
+        #     config.token = ENV["ZENDESK_TOKEN"]
+        # end
 
-        @customer = Customer.find_by(id: @interventions.customers_id)
-        ZendeskAPI::Ticket.create!(client,
-        :subject => "Intervention from #{employee.first_name}",
-        :comment => {
-            :value => "A intervention was requested by #{@customer.company_name} from the building #{@interventions.building_id} for the following Battery: #{params[:Battery]}, Column: #{params[:Column]}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
-            The follow is a discription of the report: 
-            #{@interventions.Report}"
-        },
-        :requester => { 
-            "name": employee.info, 
-            "email": employee.email 
-        },
-        :priority => "normal",
-        :type => "problem"
-        )
+        # @customer = Customer.find_by(id: @interventions.customers_id)
+        # ZendeskAPI::Ticket.create!(client,
+        # :subject => "Intervention from #{employee.first_name}",
+        # :comment => {
+        #     :value => "A intervention was requested by #{@customer.company_name} from the building #{@interventions.building_id} for the following Battery: #{params[:Battery]}, Column: #{params[:Column]}, Elevator: #{@interventions.elevators_id}. The employee assigned to the task is: #{@interventions.employees_id}.
+        #     The follow is a discription of the report: 
+        #     #{@interventions.Report}"
+        # },
+        # :requester => { 
+        #     "name": employee.info, 
+        #     "email": employee.email 
+        # },
+        # :priority => "normal",
+        # :type => "problem"
+        # )
         
         
         
